@@ -1,0 +1,124 @@
+---
+layout: false
+permalink: /blog/index.html
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Canecorp</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f8f7f4; --bg2: #ffffff; --text: #1a1a18; --text2: #5a5a55;
+      --accent: #1a4fa8; --accent2: #e8f0fc; --border: rgba(0,0,0,0.1); --radius: 12px;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    nav {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between;
+      height: 74px; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 32px; font-weight: 700; color: var(--accent); letter-spacing: -0.5px; border-bottom: 5px solid #000; text-decoration: none; }
+    .logo span { font-size: 28px; color: var(--text); }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul li a { text-decoration: none; color: var(--text2); font-size: 14px; transition: color 0.2s; }
+    nav ul li a:hover, nav ul li a.active { color: var(--accent); }
+
+    .blog-hero {
+      background: linear-gradient(135deg, #0f2d6b 0%, #1a4fa8 60%, #2563c4 100%);
+      color: #fff; padding: 80px 40px; text-align: center;
+    }
+    .blog-hero .section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #7db3ff; margin-bottom: 12px; }
+    .blog-hero h1 { font-size: clamp(28px, 4vw, 46px); font-weight: 700; letter-spacing: -1px; margin-bottom: 14px; }
+    .blog-hero p { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto; }
+
+    .blog-section { padding: 80px 40px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .post-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+
+    .post-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 32px 28px; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column;
+    }
+    .post-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .post-card .date { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 12px; }
+    .post-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .post-card p { font-size: 14px; color: var(--text2); line-height: 1.65; flex: 1; }
+    .post-card .read-more {
+      display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 600;
+      color: var(--accent); text-decoration: none;
+    }
+    .post-card .read-more:hover { text-decoration: underline; }
+
+    .empty-state { text-align: center; padding: 60px 0; color: var(--text2); }
+    .empty-state p { font-size: 16px; }
+
+    footer { background: #0f2d6b; color: rgba(255,255,255,0.7); text-align: center; padding: 32px 40px; font-size: 13px; }
+    footer strong { color: #fff; }
+
+    @media (max-width: 700px) {
+      nav ul { display: none; }
+      .blog-hero { padding: 60px 24px; }
+      .blog-section { padding: 50px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">CANE<span>corp</span></a>
+    <ul>
+      <li><a href="/#servicios">Servicios</a></li>
+      <li><a href="/#nosotros">Nosotros</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="blog-hero">
+    <p class="section-label">Recursos y novedades</p>
+    <h1>Blog de Canecorp</h1>
+    <p>Artículos, guías y novedades sobre SAP Business One, almacenes y producción.</p>
+  </div>
+
+  <section class="blog-section">
+    <div class="container">
+      {% if collections.posts.length > 0 %}
+        <div class="post-grid">
+          {% for post in collections.posts %}
+          <div class="post-card">
+            <div class="date">{{ post.date | dateFormat }}</div>
+            <h2>{{ post.data.title }}</h2>
+            <p>{{ post.data.description }}</p>
+            <a href="{{ post.url }}" class="read-more">Leer más →</a>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-state">
+          <p>Próximamente publicaremos artículos sobre SAP Business One.</p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Canecorp</strong> — Servicios IT · SAP Business One · Argentina</p>
+    <p style="margin-top:6px;">© 2025 Canecorp. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

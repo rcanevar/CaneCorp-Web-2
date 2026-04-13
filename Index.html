@@ -286,6 +286,7 @@
       .contact-box { padding: 32px 24px; }
     }
   </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -298,6 +299,7 @@
     <ul>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="/blog/">Blog</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </nav>
@@ -471,6 +473,15 @@
      document.getElementById('email-confirm').textContent = email;
      document.getElementById('form-success').style.display = 'block';
    });
+    }
+  </script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+        }
+      });
     }
   </script>
 </body>
