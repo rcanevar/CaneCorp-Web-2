@@ -1,6 +1,6 @@
 ---
 title: Que es la Manufactura de Procesos?
-date: 2026/04/13
+date: 2026-04-13
 description: La Manufactura de Procesos es un tipo de producción industrial en
   la que los productos se fabrican mediante transformaciones químicas, físicas o
   biológicas continuas o por lotes, en lugar de ensamblar piezas
