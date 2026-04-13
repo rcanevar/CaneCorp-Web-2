@@ -2,5 +2,4 @@
   command = "npx @11ty/eleventy"
   publish = "_site"
 
-[[plugins]]
-  package = "@netlify/plugin-netlify-identity"
+
