@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canecorp – SAP Business One</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f7f4;
+      --bg2: #ffffff;
+      --text: #1a1a18;
+      --text2: #5a5a55;
+      --accent: #1a4fa8;
+      --accent2: #e8f0fc;
+      --border: rgba(0,0,0,0.1);
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  border-bottom: 5px solid #000000;
+  padding-bottom: 0px;
+}
+
+.logo span {
+  font-size: 28px;
+  color: var(--text);
+}
+
+
+    /*.logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--text); */
+
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text2);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+        nav ul li a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0f2d6b 0%, #1a4fa8 60%, #2563c4 100%);
+      color: #fff;
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero h1 em { font-style: normal; color: #7db3ff; }
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      max-width: 580px;
+      margin: 0 auto 36px;
+    }
+    .btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      margin-left: 12px;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* SECTIONS */
+    section { padding: 80px 40px; }
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    .subtitle {
+      font-size: 17px;
+      color: var(--text2);
+      max-width: 540px;
+      margin-bottom: 48px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* SERVICIOS */
+    #servicios { background: var(--bg); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .card-icon svg { width: 24px; height: 24px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+    .card p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+    /* ABOUT */
+    #nosotros { background: var(--bg2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-grid .text p { color: var(--text2); font-size: 15px; line-height: 1.75; margin-bottom: 16px; }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .stat {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .stat .num { font-size: 36px; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat .desc { font-size: 13px; color: var(--text2); margin-top: 6px; }
+
+    /* CONTACTO */
+    #contacto { background: var(--bg); }
+    .contact-form-wrap {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      resize: vertical;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #aaa; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(26,79,168,0.12);
+    }
+    .btn-submit {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 36px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
+    }
+    .btn-submit:hover { background: #163e8a; transform: translateY(-1px); }
+    .btn-submit:active { transform: scale(0.98); }
+    .btn-submit:disabled { background: #aaa; cursor: not-allowed; transform: none; }
+    .success-icon {
+      width: 56px; height: 56px;
+      background: #e6f4ea;
+      color: #1e7e3a;
+      font-size: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    @media (max-width: 700px) {
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form-wrap { padding: 28px 20px; }
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0f2d6b;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 32px 40px;
+      font-size: 13px;
+    }
+    footer strong { color: #fff; }
+
+    @media (max-width: 700px) {
+      nav ul { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 70px 24px; }
+      section { padding: 60px 24px; }
+      .contact-box { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+   <!-- <a href="#"><img src="img/LogoWeb.png" alt="Canecorp" style="height: 150px; display:block;" /></a>  
+    <div class="logo">Cane<span>corp</span></div> -->
+
+    <div class="logo">CANE<span>corp</span></div>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <h1>Especialistas en<br><em>SAP Business One</em></h1>
+    <p>Optimizamos la gestión de almacenes y producción de tu empresa con soluciones IT a medida.</p>
+    <a href="#servicios" class="btn">Ver servicios</a>
+    <a href="#contacto" class="btn btn-outline">Contactarnos</a>
+  </header>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="container">
+      <p class="section-label">Lo que hacemos</p>
+      <h2>Nuestros servicios</h2>
+      <p class="subtitle">Soluciones especializadas en SAP Business One para llevar tu operación al siguiente nivel.</p>
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>Gestión de Almacenes (WMS)</h3>
+          <p>Implementación y optimización del módulo de almacenes en SAP B1. Control de stock, movimientos, trazabilidad y operación eficiente del depósito.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M14.83 9.17a4 4 0 0 1 0 5.66M9.17 9.17a4 4 0 0 0 0 5.66"/></svg>
+          </div>
+          <h3>Gestión de la Producción (MRP)</h3>
+          <p>Configuración de órdenes de producción, planificación de recursos y seguimiento de la manufactura integrada con el resto del negocio en SAP B1.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3>Implementación SAP B1</h3>
+          <p>Relevamiento, configuración, migración de datos y puesta en marcha de SAP Business One adaptado a los procesos de tu empresa.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3>Consultoría y Soporte</h3>
+          <p>Acompañamiento post-implementación, resolución de incidencias, capacitación de usuarios y mejora continua de los procesos en SAP B1.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Desarrollo y Customización</h3>
+          <p>Extensiones, reportes personalizados, integraciones con otros sistemas y automatizaciones específicas para tu industria sobre la plataforma SAP.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          </div>
+          <h3>Reportes y Business Intelligence</h3>
+          <p>Dashboards, KPIs y análisis de datos para que la dirección tome decisiones basadas en información en tiempo real de toda la operación.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="container">
+      <div class="about-grid">
+        <div class="text">
+          <p class="section-label">Quiénes somos</p>
+          <h2>Experiencia que genera resultados</h2>
+          <p>Canecorp es una empresa de servicios IT con foco en SAP Business One. Nuestro equipo cuenta con amplia experiencia en industrias manufactureras, distribuidoras y logísticas de Argentina y la región.</p>
+          <p>Nos especializamos en los módulos más críticos para la operación: gestión de almacenes y control de la producción, ayudando a nuestros clientes a reducir errores, ganar visibilidad y escalar con confianza.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat"><div class="num">10+</div><div class="desc">Años de experiencia</div></div>
+          <div class="stat"><div class="num">50+</div><div class="desc">Proyectos realizados</div></div>
+          <div class="stat"><div class="num">100%</div><div class="desc">Foco en SAP B1</div></div>
+          <div class="stat"><div class="num">24/7</div><div class="desc">Soporte a clientes</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <div style="text-align:center; margin-bottom: 48px;">
+        <p class="section-label">Hablemos</p>
+        <h2>¿Querés mejorar tu operación?</h2>
+        <p class="subtitle" style="margin: 0 auto;">Contanos sobre tu empresa. Nuestro equipo te responderá a la brevedad.</p>
+      </div>
+      <div class="contact-form-wrap">
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre y apellido *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Juan García" required />
+            </div>
+            <div class="form-group">
+              <label for="empresa">Empresa *</label>
+              <input type="text" id="empresa" name="empresa" placeholder="Mi Empresa S.A." required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="juan@miempresa.com" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+54 11 1234-5678" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="servicio">Servicio de interés</label>
+            <select id="servicio" name="servicio">
+              <option value="">Seleccioná una opción...</option>
+              <option>Gestión de Almacenes (WMS)</option>
+              <option>Gestión de la Producción (MRP)</option>
+              <option>Implementación SAP B1</option>
+              <option>Consultoría y Soporte</option>
+              <option>Desarrollo y Customización</option>
+              <option>Reportes y Business Intelligence</option>
+              <option>Otro / No estoy seguro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje *</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contanos brevemente sobre tu empresa y en qué podemos ayudarte..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-submit" id="submit-btn">Enviar mensaje</button>
+        </form>
+        <div id="form-success" style="display:none; text-align:center; padding: 48px 24px;">
+          <div class="success-icon">✓</div>
+          <h3 style="font-size:22px; margin-bottom:12px;">¡Mensaje enviado!</h3>
+          <p style="color:var(--text2);">Gracias por contactarnos. Te responderemos a la brevedad en <strong id="email-confirm"></strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Canecorp</strong> — Servicios IT · SAP Business One · Argentina</p>
+    <p style="margin-top: 6px;">© 2025 Canecorp. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      const email = document.getElementById('email').value;
+      // Simulación de envío (reemplazar con fetch a tu backend o servicio como Formspree)
+      fetch('https://formspree.io/f/xdaynzwk', {
+     method: 'POST',
+     body: new FormData(e.target),
+     headers: { 'Accept': 'application/json' }
+   }).then(() => {
+     document.getElementById('contact-form').style.display = 'none';
+     document.getElementById('email-confirm').textContent = email;
+     document.getElementById('form-success').style.display = 'block';
+   });
+    }
+  </script>
+</body>
+</html>
