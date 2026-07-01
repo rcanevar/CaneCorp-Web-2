@@ -9,13 +9,14 @@ description: La Manufactura de Procesos es un tipo de producción industrial en
   materiales hasta obtener un resultado final.
 ---
 ***En sistemas como SAP Business One, la manufactura de procesos suele requerir***
-	•	Manejo de recetas en lugar de BOM
-	•	Control de lotes y trazabilidad
-	•	Gestión de calidad
-	•	Integración con almacenes (WMS) y, muchas veces, tecnologías como:
-	•	códigos de barras
-	•	QR
-	•	RFID (esto conecta muy bien con lo que vos trabajás)
+
+* Manejo de recetas en lugar de BOM
+* Control de lotes y trazabilidad
+* Gestión de calidad
+* Integración con almacenes (WMS) y, muchas veces, tecnologías como:
+* códigos de barras
+* QR
+* RFID 
 
 ***Industrias específicas para manufactura de procesos*** 
 
