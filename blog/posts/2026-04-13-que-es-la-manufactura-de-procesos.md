@@ -18,7 +18,9 @@ description: La Manufactura de Procesos es un tipo de producción industrial en
 * QR
 * RFID 
 
-***Industrias específicas para manufactura de procesos*** 
+***![Industrias específicas para manufactura de procesos*** ***](/images/uploads/image1.png)***
+
+
 
 * Productos de consumo masivo
 * Farmacéuticas
